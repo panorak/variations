@@ -11,8 +11,8 @@ let aux = [];
 let auxName = [];
 let fft1, fft2;
 
-let n_width = 1600; //1024;
-let n_height = 800; // 768;
+let n_width = 1024; //1024;
+let n_height = 768; // 768;
 
 let peo_0 = [];
 let peo_1 = [];
@@ -86,8 +86,8 @@ function preload(){
 
 function setup() {
 
- canv =   createCanvas(1920, 1080); //n_width, n_height
- canv.position(1920/5, 1080/5); // (1920/5, 1080/5)
+ createCanvas(n_width, n_height); // canv =   n_width, n_height
+// canv.position(1920/5, 1080/5); // (1920/5, 1080/5)
   frameRate(10);
   colorMode(RGB);
   m =0;
@@ -102,7 +102,7 @@ function setup() {
 //buttons
 btn0 = createButton('마림바_____Marimba');
 btn0.style('width', '200px');
-btn0.style('height', '25px');
+btn0.style('height', '20px');
 btn0.style('background-color', col);
 btn0.style('border', '0px');
 btn0.style('color', fcol);
@@ -111,7 +111,7 @@ btn0.mousePressed(Marimba);
 
 btn1 = createButton('첼로_____Cello');
 btn1.style('width', '200px');
-btn1.style('height', '25px');
+btn1.style('height', '20px');
 btn1.style('background-color', col);
 btn1.style('border', '0px');
 btn1.style('color', fcol);
@@ -120,7 +120,7 @@ btn1.mousePressed(Cello);
 
 btn2 = createButton('피아노_____Piano');
 btn2.style('width', '200px');
-btn2.style('height', '25px');
+btn2.style('height', '20px');
 btn2.style('background-color', col);
 btn2.style('border', '0px');
 btn2.style('color', fcol);
@@ -129,7 +129,7 @@ btn2.mousePressed(Piano);
 
 btn3 = createButton('신디사이저_____Synth');
 btn3.style('width', '200px');
-btn3.style('height', '25px');
+btn3.style('height', '20px');
 btn3.style('background-color', col);
 btn3.style('border', '0px');
 btn3.style('color', fcol);

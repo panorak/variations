@@ -29,6 +29,7 @@ let curFrame3 = 0;
 let curFrame4 = 0;
 let curFrame5 = 0;
 let i = 0;
+let j = 0;
 let k = 20;
 let inst = 0;
 let myColor ;
@@ -36,6 +37,7 @@ let c1, c2;
 let m, m1;
 let num = 8;
 let col,fcol;
+let spectrum;
 
 function preload(){
   for(let i = 0; i<10;i++){ //peo_0.length
@@ -169,13 +171,15 @@ function draw() {
  curFrame5 = (curFrame5 + 1) % peobody_mad.length;
 
 
-let spectrum = fft.analyze();
+ spectrum = fft.analyze();
 
 colorMode(HSB);
 
   stroke(i, 255,255); //i
   fill(i, 255,255); //i
+
   push();
+
    beginShape();
    for( let j = 0; j<spectrum.length/num; j++){ // num 변수화 적을수록 가시 많아짐// fft.specSize()8
     stroke(j,255,255);
@@ -191,13 +195,13 @@ colorMode(HSB);
     let rad = random(5,20);
 //  console.log(freqAmp);
  // noFill();
-console.log(leng);
+//console.log(leng);
 
    line(n_width /2+200,n_height/2+50, x,y); // // 변수화 2 + 값 100에서 커질수록 큰원
 
   // curveVertex(x,y);
    ellipse(x,y,rad,rad);
-
+   mElp(x,y,rad,rad);
    translate(n_width /2+500,n_height/2+50);
    rotate(-10);
    line(n_width /2+100,n_height /2+50, x,y);
@@ -233,8 +237,21 @@ if(inst == 0){
     image(peobody_sad, 50,150);
   //num = 24;
   }else if(inst == 3){
- image(peo_2[curFrame2], -150,0);
-  noTint();
+
+   image(peo_2[curFrame2], -150,0);
+   /*
+   push();
+  // tint(20,20,100);
+   scale(0.8);
+    image(peo_2[curFrame2], -40,100);
+   pop();
+   */
+   push();
+   scale(0.4);
+  tint(47,200,80);
+    image(peo_2[curFrame2], 480,700);
+   pop();
+   noTint();
   image(peobody_mad[curFrame5], 50,150);;
  //num = 12;
   }
@@ -322,7 +339,7 @@ function Synth(){
 
   colorMode(RGB);
   c1 = c2;
-  c2 = color(188,50,47);
+  c2 = color(188,50,47); //188,50,47
   if(!au.isPlaying())  {
   inst = 3;
   au = aux[inst];
@@ -331,4 +348,24 @@ function Synth(){
     au.pause();
   //  au.rewind();
   }
+}
+function mousePressed(){
+// console.log("mouseP");
+ if(j > 30) j = 0;
+ j++;
+for( let a=0; a<j;a++){
+  noFill();
+  stroke(random(58), random(158),random(255) );
+  //noStroke();
+  //fill(random(58), random(158),random(255),20 );
+   ellipse(mouseX, mouseY, 8*a,8*a)
+}
+}
+
+function mElp(xx, yy, rr){
+
+  for(let i = 0; i <5; i++){
+    ellipse(xx-i*rr/2, yy+i*rr/2, rr*0.25, rr*0.25);
+  }
+
 }
